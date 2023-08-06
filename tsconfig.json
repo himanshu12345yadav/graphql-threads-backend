@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "module": "ESNext",
+      "lib": ["ES2020"],
+      "typeRoots": ["node_modules/@types"],
+      "outDir": "dist",
+      "rootDir": "./",
+      "strict": true,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "types": ["node"],
+      "resolveJsonModule": true,
+      "importHelpers": false,
+      "noEmit": false,
+      "declaration": false,
+      "sourceMap": false,
+      "strictPropertyInitialization": false,
+      "pretty": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,
+      "baseUrl": "./",
+      "skipLibCheck": true,
+    },
+    "include": ["**/*"],
+    "exclude": ["node_modules", ".build"],
+    "ts-node": {
+      "require": ["tsconfig-paths/register"]
+    }
+  }
+  
