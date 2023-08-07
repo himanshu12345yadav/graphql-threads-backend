@@ -5,6 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 import http from 'http';
+import schema from 'graphql/schema';
 
 dotenv.config();
 
@@ -19,38 +20,9 @@ app.get('/', (_req, res) => {
   });
 });
 
-const typeDefs = `#graphql
-  type Book {
-    title : String,
-    author : String
-  }
-  type Query {
-    books : [Book]
-  }
-  
-`;
-
-const books = [
-  {
-    title: 'The Awekening',
-    author: 'Kate chopin',
-  },
-  {
-    title: 'City of glass',
-    author: 'Paul Auster',
-  },
-];
-
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-};
-
 (async function () {
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
