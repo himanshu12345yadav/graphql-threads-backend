@@ -6,17 +6,16 @@ input UserInput {
 }
 
 type User {
-  firstName: String!
-  lastName: String!
+  id: String!
   email: String!
 }
 
 type Query {
   users: [User]!
-  user(email: String!): User
+  getUserToken(email: String!, password: String!): String
 }
 
 type Mutation {
-  createUser(user: UserInput!): Boolean
+  createUser(user: UserInput!): String
   updateUser(user: UserInput!): User!
 }

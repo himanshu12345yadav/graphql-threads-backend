@@ -1,21 +1,10 @@
-import { join } from 'node:path';
-import { readdirSync, readFileSync } from 'node:fs';
 import { makeExecutableSchema } from '@graphql-tools/schema';
-import resolvers from 'graphql/resolvers/index';
+import { loadFiles } from '@graphql-tools/load-files';
 
-const gqlFiles = readdirSync(join(__dirname, 'typedefs'));
-
-let typeDefs = '';
-
-gqlFiles.forEach((file) => {
-  typeDefs += readFileSync(join(__dirname, 'typedefs', file), {
-    encoding: 'utf-8',
+export default async function getSchema() {
+  const schema = makeExecutableSchema({
+    typeDefs: await loadFiles('graphql/typedefs/**/*.graphql'),
+    resolvers: await loadFiles('graphql/resolvers/**/*.{js,ts}'),
   });
-});
-
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
-
-export default schema;
+  return schema;
+}

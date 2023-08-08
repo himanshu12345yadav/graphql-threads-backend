@@ -5,7 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 import http from 'http';
-import schema from 'graphql/schema';
+import getSchema from 'graphql/schema';
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ app.get('/', (_req, res) => {
 
 (async function () {
   const server = new ApolloServer({
-    schema,
+    schema: await getSchema(),
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
